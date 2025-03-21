@@ -1,3 +1,35 @@
-node_modules
+# Node.js dependencies
+node_modules/
+
+# Parcel build output
+.dist/
+.build/
+
+# Logs
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# IDE files (for common editors like VSCode)
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Jest test coverage
+coverage/
+
+# Parcel cache
+.cache/
+
+# Ignore optional files like lock files if you want
+package-lock.json
+yarn.lock
+
+.parcel-cache
 dist
-.parcel_cache

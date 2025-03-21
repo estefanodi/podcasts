@@ -24,6 +24,8 @@
     "strict": true,
 
     /* Completeness */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "types": ["jest", "react"] // Include Jest and React types
   }
 }
