@@ -26,6 +26,10 @@
     /* Completeness */
     "skipLibCheck": true,
 
-    "types": ["jest", "react"] // Include Jest and React types
+    "types": ["jest", "react"],
+    "baseUrl": "./src",
+    "paths": {
+      "@contexts/*": ["contexts/*"]
+    }
   }
 }
