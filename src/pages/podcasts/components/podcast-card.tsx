@@ -1,7 +1,7 @@
 import {
   StyledPodcastCard,
   StyledPodcastCardBottom,
-  StyledPodcastName,
+  StyledPodcastTitle,
   StyledPodcastArtist,
   StyledRoundedImage,
 } from "../styles";
@@ -9,14 +9,14 @@ import type { Podcast, Image } from "../../../types";
 import { CARD_AUTHOR } from "../../../constants";
 
 type PodcastCardProps = {
-  podcastName: Podcast["im:name"]["label"];
+  podcastTitle: Podcast["title"]["label"];
   podcastArtist: Podcast["im:artist"]["label"];
   podcastImageUrl: Image["label"];
   podcastId: Podcast["id"]["attributes"]["im:id"];
 };
 
 export const PodcastCard: React.FC<PodcastCardProps> = ({
-  podcastName,
+  podcastTitle,
   podcastArtist,
   podcastImageUrl,
   podcastId,
@@ -27,9 +27,9 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({
         //
       }}
     >
-      <StyledRoundedImage src={podcastImageUrl} alt={`${podcastName} name`} />
+      <StyledRoundedImage src={podcastImageUrl} alt={`${podcastTitle} name`} />
       <StyledPodcastCardBottom>
-        <StyledPodcastName>{podcastName}</StyledPodcastName>
+        <StyledPodcastTitle>{podcastTitle}</StyledPodcastTitle>
         <StyledPodcastArtist>
           {CARD_AUTHOR}
           {podcastArtist}

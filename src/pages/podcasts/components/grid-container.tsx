@@ -9,14 +9,14 @@ export const GridContainer: React.FC = () => {
   return (
     <StyledGridContainer>
       {podcasts.map((item: Podcast) => {
-        const podcastName = item["im:name"].label;
+        const podcastTitle = item.title.label;
         const podcastArtist = item["im:artist"].label;
         const podcastImageUrl = item["im:image"][2].label;
         const podcastId = item.id.attributes["im:id"];
         return (
           <PodcastCard
             key={podcastId}
-            podcastName={podcastName}
+            podcastTitle={podcastTitle}
             podcastArtist={podcastArtist}
             podcastImageUrl={podcastImageUrl}
             podcastId={podcastId}

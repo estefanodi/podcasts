@@ -29,7 +29,9 @@
     "types": ["jest", "react"],
     "baseUrl": "./src",
     "paths": {
-      "@contexts/*": ["contexts/*"]
+      "@src/*": ["*"],
+      "@contexts/*": ["contexts/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }

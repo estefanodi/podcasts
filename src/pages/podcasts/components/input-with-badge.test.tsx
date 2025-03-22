@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { InputWithBadge } from ".";
+import { InputWithBadge } from "./input-with-badge";
 
 const mockPlaceholder = "Search...";
 const mockOnChange = jest.fn();
@@ -15,6 +15,7 @@ const renderComponent = ({
       resultsCounter={resultsCounter}
       placeholder={placeholder}
       onChange={onChange}
+      value=""
     />
   );
 
@@ -50,6 +51,7 @@ describe("InputWithBadge", () => {
         resultsCounter={10}
         placeholder={mockPlaceholder}
         onChange={mockOnChange}
+        value=""
       />
     );
 

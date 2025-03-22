@@ -4,16 +4,18 @@ import { GridContainer } from "./components/grid-container";
 import { useAppContext } from "../../contexts/app-context";
 
 export const Podcasts: React.FC = () => {
-  const { podcastsCounter } = useAppContext();
+  const { podcastsCounter, setInputWithBadgeValue, inputWithBadgeValue } =
+    useAppContext();
 
   return (
     <>
       <InputWithBadge
         placeholder={FILTER_INPUT_PLACEHOLDER}
         resultsCounter={podcastsCounter}
-        onChange={() => {
-          //
-        }}
+        onChange={(e: { target: { value: string } }) =>
+          setInputWithBadgeValue(e.target.value)
+        }
+        value={inputWithBadgeValue}
       />
       <GridContainer />
     </>

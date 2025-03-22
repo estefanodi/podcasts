@@ -57,7 +57,7 @@ export const StyledPodcastCardBottom = styled.div`
   justify-content: flex-end;
 `;
 
-export const StyledPodcastName = styled.h2`
+export const StyledPodcastTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
   color: #333;
