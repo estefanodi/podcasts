@@ -5,3 +5,4 @@ export const BORDER_COLOR = "#ddd";
 // text resources
 export const APP_NAME = "Podcaster";
 export const FILTER_INPUT_PLACEHOLDER = "Filter podcasts...";
+export const CARD_AUTHOR = "Author: ";
