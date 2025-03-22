@@ -31,7 +31,8 @@
     "paths": {
       "@src/*": ["*"],
       "@contexts/*": ["contexts/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@shared/*": ["shared/*"]
     }
   }
 }

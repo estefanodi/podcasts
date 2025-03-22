@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-import { APP_MAIN_COLOR, BORDER_COLOR } from "../../constants";
+import {
+  APP_MAIN_COLOR,
+  LIGHT_GRAY_COLOR,
+  WHITE_COLOR,
+  GRAY_COLOR,
+  DARK_GRAY_COLOR,
+} from "@src/constants";
 
 export const StyledInputWrapper = styled.div`
   display: flex;
@@ -11,7 +17,7 @@ export const StyledInputWrapper = styled.div`
 
 export const StyledBadge = styled.span`
   background-color: ${APP_MAIN_COLOR};
-  color: white;
+  color: ${WHITE_COLOR};
   padding: 5px 10px;
   border-radius: 12px;
   font-size: 12px;
@@ -21,7 +27,7 @@ export const StyledBadge = styled.span`
 export const StyledInput = styled.input`
   padding-left: 15px;
   padding-right: 10px;
-  border: 1px solid ${BORDER_COLOR};
+  border: 1px solid ${LIGHT_GRAY_COLOR};
   border-radius: 4px;
   font-size: 16px;
   height: 30px;
@@ -42,9 +48,10 @@ export const StyledPodcastCard = styled.div`
   width: 100%;
   height: 180px;
   display: flex;
-  border: 1px solid ${BORDER_COLOR};
+  border: 1px solid ${LIGHT_GRAY_COLOR};
   align-items: flex-end;
   position: relative;
+  cursor: pointer;
 `;
 
 export const StyledPodcastCardBottom = styled.div`
@@ -52,7 +59,7 @@ export const StyledPodcastCardBottom = styled.div`
   height: 120px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${BORDER_COLOR};
+  border: 1px solid ${LIGHT_GRAY_COLOR};
   align-items: center;
   justify-content: flex-end;
 `;
@@ -60,12 +67,12 @@ export const StyledPodcastCardBottom = styled.div`
 export const StyledPodcastTitle = styled.h2`
   font-size: 1rem;
   font-weight: bold;
-  color: #333;
+  color: ${DARK_GRAY_COLOR};
   margin: 0;
 `;
 export const StyledPodcastArtist = styled.p`
   font-size: 0.8rem;
-  color: #777;
+  color: ${GRAY_COLOR};
   margin-top: 8px;
 `;
 

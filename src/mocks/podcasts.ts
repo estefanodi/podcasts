@@ -1,4 +1,4 @@
-import type { Podcast } from "../types";
+import type { Podcast } from "@src/types";
 
 export const mockPodcasts: Podcast[] = [
   {

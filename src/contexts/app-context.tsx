@@ -8,7 +8,7 @@ import {
 import { mockPodcasts } from "../mocks/podcasts";
 import { filterItems } from "utils/filter-podcasts";
 
-import type { Podcast } from "../types";
+import type { Podcast } from "@src/types";
 
 type AppContextType = {
   podcasts: any;

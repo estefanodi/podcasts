@@ -1,6 +1,17 @@
 import { createBrowserRouter } from "react-router";
+
 import { Podcasts, Podcast, Episode } from "./pages";
-import { Layout } from "./layout"; // Import Layout
+import { Layout } from "./layout";
+import type { Podcast as PodcastType, PodcastDetails } from "@src/types";
+
+export const paths = {
+  podcast: (podcastId: PodcastType["id"]["attributes"]["im:id"]) =>
+    `/podcast/${podcastId}`,
+  episode: (
+    podcastId: PodcastDetails["collectionId"],
+    episodeId: PodcastDetails["trackId"]
+  ) => `/podcast/${podcastId}/episode/${episodeId}`,
+};
 
 export const router = createBrowserRouter([
   {

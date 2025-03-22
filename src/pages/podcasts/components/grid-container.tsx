@@ -1,7 +1,8 @@
 import { StyledGridContainer } from "../styles";
-import { PodcastCard } from "./podcast-card";
+
 import { useAppContext } from "@contexts/app-context";
-import type { Podcast } from "../../../types";
+import { PodcastCard } from "./podcast-card";
+import type { Podcast } from "@src/types";
 
 export const GridContainer: React.FC = () => {
   const { podcasts } = useAppContext();
@@ -13,6 +14,8 @@ export const GridContainer: React.FC = () => {
         const podcastArtist = item["im:artist"].label;
         const podcastImageUrl = item["im:image"][2].label;
         const podcastId = item.id.attributes["im:id"];
+        const podcastDescription = item.summary.label;
+
         return (
           <PodcastCard
             key={podcastId}
@@ -20,6 +23,7 @@ export const GridContainer: React.FC = () => {
             podcastArtist={podcastArtist}
             podcastImageUrl={podcastImageUrl}
             podcastId={podcastId}
+            podcastDescription={podcastDescription}
           />
         );
       })}
