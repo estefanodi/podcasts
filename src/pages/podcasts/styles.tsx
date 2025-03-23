@@ -6,6 +6,7 @@ import {
   WHITE_COLOR,
   GRAY_COLOR,
   DARK_GRAY_COLOR,
+  BOX_SHADOW_COLOR,
 } from "@src/constants";
 
 export const StyledInputWrapper = styled.div`
@@ -38,7 +39,8 @@ export const StyledInput = styled.input`
 export const StyledGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 20px;
+  row-gap: 100px;
   overflow-y: auto;
   padding: 10px 0;
   justify-items: center;
@@ -48,10 +50,10 @@ export const StyledPodcastCard = styled.div`
   width: 100%;
   height: 180px;
   display: flex;
-  border: 1px solid ${LIGHT_GRAY_COLOR};
   align-items: flex-end;
   position: relative;
   cursor: pointer;
+  text-align: center;
 `;
 
 export const StyledPodcastCardBottom = styled.div`
@@ -59,13 +61,14 @@ export const StyledPodcastCardBottom = styled.div`
   height: 120px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${LIGHT_GRAY_COLOR};
   align-items: center;
   justify-content: flex-end;
+  box-shadow: ${BOX_SHADOW_COLOR};
+  padding: 7px;
 `;
 
 export const StyledPodcastTitle = styled.h2`
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: ${DARK_GRAY_COLOR};
   margin: 0;

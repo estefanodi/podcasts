@@ -13,4 +13,5 @@ export const FILTER_INPUT_PLACEHOLDER = "Filter podcasts...";
 export const CARD_AUTHOR = "Author: ";
 export const DESCRIPTION = "Description:";
 export const EPISODES = "Episodes: ";
+export const BY = "by  ";
 export const TABLE_HEADER = ["Title", "Date", "Duration"];

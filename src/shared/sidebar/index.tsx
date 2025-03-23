@@ -1,12 +1,9 @@
-import { DESCRIPTION } from "@src/constants";
+import { DESCRIPTION, BY } from "@src/constants";
 import {
   StyledSidebarContainer,
   StyledSidebarImage,
   StyledDetailsSection,
-  StyledTitle,
-  StyledArtist,
   StyledDescriptionSection,
-  StyledDescription,
 } from "./styles";
 
 type SidebarProps = {
@@ -21,19 +18,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
   podcastTitle,
   podcastArtist,
   podcastDescription,
-}) => {
-  console.log(podcastTitle, podcastArtist, podcastDescription);
-  return (
-    <StyledSidebarContainer>
-      <StyledSidebarImage src={podcastImageUrl} alt="" />
-      <StyledDetailsSection>
-        <StyledTitle>{podcastTitle}</StyledTitle>
-        <StyledArtist>{podcastArtist}</StyledArtist>
-      </StyledDetailsSection>
-      <StyledDescriptionSection>
-        {DESCRIPTION}
-        <StyledDescription>{podcastDescription}</StyledDescription>
-      </StyledDescriptionSection>
-    </StyledSidebarContainer>
-  );
-};
+}) => (
+  <StyledSidebarContainer>
+    <StyledSidebarImage src={podcastImageUrl} alt={`${podcastTitle} image`} />
+    <StyledDetailsSection>
+      <>
+        <h2>{podcastTitle}</h2>
+        <p>
+          {BY}
+          {podcastArtist}
+        </p>
+      </>
+    </StyledDetailsSection>
+    <StyledDescriptionSection>
+      <h2>{DESCRIPTION}</h2>
+      <p>{podcastDescription}</p>
+    </StyledDescriptionSection>
+  </StyledSidebarContainer>
+);

@@ -3,11 +3,11 @@ import { LIGHT_GRAY_COLOR, BOX_SHADOW_COLOR } from "@src/constants";
 
 export const StyledSidebarContainer = styled.div`
   width: 250px;
-  height: 400px;
   display: flex;
   flex-direction: column;
-  padding: 0 5px;
-  box-shadow: 0px 4px 10px ${BOX_SHADOW_COLOR};
+  padding: 0 10px;
+  box-shadow: ${BOX_SHADOW_COLOR};
+  align-self: flex-start;
 `;
 
 export const StyledSidebarImage = styled.img`
@@ -19,18 +19,35 @@ export const StyledSidebarImage = styled.img`
 
 export const StyledDetailsSection = styled.div`
   border-top: 1px solid ${LIGHT_GRAY_COLOR};
-  height: 20%;
-`;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
 
-export const StyledTitle = styled.h2`
-  font-size: 0.8rem;
-`;
+  & h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+  }
 
-export const StyledArtist = styled.p``;
+  & p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+`;
 
 export const StyledDescriptionSection = styled.div`
   border-top: 1px solid ${LIGHT_GRAY_COLOR};
-  height: 30%;
-`;
+  padding: 20px 0;
 
-export const StyledDescription = styled.p``;
+  & h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  & p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+`;
