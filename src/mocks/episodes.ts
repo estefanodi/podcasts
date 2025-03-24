@@ -1,11 +1,11 @@
-import type { PodcastDetails } from "@src/types";
+import type { Episode } from "@src/types";
 
-type MockPodcast = {
+type MockEpisodes = {
   resultCount: number;
-  results: PodcastDetails[];
+  results: Episode[];
 };
 
-export const mockPodcast: MockPodcast = {
+export const mockEpisodes: MockEpisodes = {
   resultCount: 21,
   results: [
     {

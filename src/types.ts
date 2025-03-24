@@ -39,7 +39,7 @@ export type Podcast = {
   "im:releaseDate": { label: string; attributes: Pick<Attributes, "label"> };
 };
 
-export type PodcastDetails = {
+export type Episode = {
   wrapperType: string;
   kind: string;
   collectionId: number;

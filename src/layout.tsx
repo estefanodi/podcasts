@@ -2,18 +2,18 @@ import React from "react";
 import { Outlet } from "react-router";
 
 import { Header } from "./shared/header";
-import { AppProvider } from "./contexts/app-context";
 import { StyledLayout } from "./styles";
+import { useAppContext } from "./contexts/app-context";
 
 export const Layout: React.FC = () => {
+  const { isLoading } = useAppContext();
+
   return (
-    <AppProvider>
-      <StyledLayout>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-      </StyledLayout>
-    </AppProvider>
+    <StyledLayout>
+      <Header isLoading={isLoading} />
+      <main>
+        <Outlet />
+      </main>
+    </StyledLayout>
   );
 };
