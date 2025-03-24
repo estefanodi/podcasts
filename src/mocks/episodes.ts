@@ -32,7 +32,7 @@ export const mockEpisodes: MockEpisodes = {
       collectionPrice: 0.0,
       trackPrice: 0.0,
       collectionHdPrice: 0,
-      releaseDate: "2025-03-21T07:00:00Z",
+      releaseDate: "2025-01-21T07:00:00Z",
       collectionExplicitness: "notExplicit",
       trackExplicitness: "explicit",
       trackCount: 361,

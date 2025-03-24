@@ -6,7 +6,7 @@ import {
   StyledDescriptionSection,
 } from "./styles";
 
-type SidebarProps = {
+export type SidebarProps = {
   podcastImageUrl: string;
   podcastTitle: string;
   podcastArtist: string;

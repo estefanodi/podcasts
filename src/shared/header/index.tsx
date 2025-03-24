@@ -2,7 +2,7 @@ import { StyledHeader, StyledTitle } from "./styles";
 import { Indicator } from "../indicator";
 import { APP_NAME } from "../../constants";
 
-type HeaderProps = {
+export type HeaderProps = {
   isLoading: boolean;
 };
 

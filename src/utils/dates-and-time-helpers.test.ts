@@ -15,6 +15,18 @@ describe("formatMilliseconds", () => {
     const result3 = formatMilliseconds(74000);
     expect(result3).toBe("01:14");
   });
+
+  it("returns `00:00` when milliseconds is undefined", () => {
+    const result = formatMilliseconds(undefined);
+
+    expect(result).toBe("00:00");
+  });
+
+  it("returns `00:00` when milliseconds is null", () => {
+    const result = formatMilliseconds(null);
+
+    expect(result).toBe("00:00");
+  });
 });
 
 describe("formatDate", () => {

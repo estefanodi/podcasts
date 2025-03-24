@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: "node",
   transform: {
     "^.+\\.[t|j]sx?$": "babel-jest",
   },
@@ -6,5 +7,9 @@ module.exports = {
   testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
     "^@src/(.*)$": "<rootDir>/src/$1",
+    "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^@contexts/(.*)$": "<rootDir>/src/contexts/$1",
+    "^@shared/(.*)$": "<rootDir>/src/shared/$1",
   },
+  type: "module",
 };

@@ -12,6 +12,5 @@ export const StyledHeader = styled.div`
 export const StyledTitle = styled.h1`
   color: ${APP_MAIN_COLOR};
   font-size: 1.5rem;
-  letter-spacing: 0.2rem;
   margin: 0;
 `;

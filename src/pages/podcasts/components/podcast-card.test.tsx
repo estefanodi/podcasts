@@ -2,12 +2,15 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { useNavigate } from "react-router";
 
 import { paths } from "@src/router";
-import { PodcastCard } from "./podcast-card";
+import { PodcastCard, type PodcastCardProps } from "./podcast-card";
 
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
   useNavigate: jest.fn(),
 }));
+
+const renderComponent = (podcast: PodcastCardProps) =>
+  render(<PodcastCard {...podcast} />);
 
 describe("PodcastCard", () => {
   const mockNavigate = jest.fn();
@@ -16,7 +19,7 @@ describe("PodcastCard", () => {
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
   });
 
-  const podcast = {
+  const podcastCardProps: PodcastCardProps = {
     podcastTitle: "Sample Podcast",
     podcastArtist: "John Doe",
     podcastImageUrl: "https://example.com/image.jpg",
@@ -25,33 +28,33 @@ describe("PodcastCard", () => {
   };
 
   it("renders podcast card correctly", () => {
-    render(<PodcastCard {...podcast} />);
+    renderComponent({ ...podcastCardProps });
 
-    // Check that the title, artist, and image are rendered
-    expect(screen.getByText(podcast.podcastTitle)).toBeInTheDocument();
+    expect(screen.getByText(podcastCardProps.podcastTitle)).toBeInTheDocument();
     expect(
-      screen.getByText(`Author: ${podcast.podcastArtist}`)
+      screen.getByText(`Author: ${podcastCardProps.podcastArtist}`)
     ).toBeInTheDocument();
     expect(
-      screen.getByAltText(`${podcast.podcastTitle} name`)
+      screen.getByAltText(`${podcastCardProps.podcastTitle} name`)
     ).toBeInTheDocument();
   });
 
   it("navigates to the correct path when clicked", () => {
-    render(<PodcastCard {...podcast} />);
+    renderComponent({ ...podcastCardProps });
 
-    // Click the podcast card
-    fireEvent.click(screen.getByAltText(`${podcast.podcastTitle} name`));
+    fireEvent.click(
+      screen.getByAltText(`${podcastCardProps.podcastTitle} name`)
+    );
 
-    // Check that navigateTo is called with the correct path and state
     expect(mockNavigate).toHaveBeenCalledWith(
-      paths.podcast(podcast.podcastId),
+      paths.podcast(podcastCardProps.podcastId),
       {
         state: {
-          podcastTitle: podcast.podcastTitle,
-          podcastArtist: podcast.podcastArtist,
-          podcastImageUrl: podcast.podcastImageUrl,
-          podcastDescription: podcast.podcastDescription,
+          podcastTitle: podcastCardProps.podcastTitle,
+          podcastArtist: podcastCardProps.podcastArtist,
+          podcastImageUrl: podcastCardProps.podcastImageUrl,
+          podcastDescription: podcastCardProps.podcastDescription,
+          podcastId: podcastCardProps.podcastId,
         },
       }
     );

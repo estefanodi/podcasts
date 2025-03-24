@@ -15,8 +15,13 @@ export const DESCRIPTION = "Description:";
 export const EPISODES = "Episodes: ";
 export const BY = "by  ";
 export const TABLE_HEADER = ["Title", "Date", "Duration"];
+
 // api
 export const FETCH_PODCASTS_URL =
   "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 export const FETCH_EPISODES_URL = (podcastId: string): string =>
   `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
+
+// local storage keys
+export const PODCASTS_FETCH_DATE_TIME_KEY = "podcasts_fetch_date_time";
+export const PODCASTS_LIST_KEY = "podcasts_list";

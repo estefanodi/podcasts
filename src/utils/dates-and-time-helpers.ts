@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-type FormatMilliseconds = (milliseconds: number) => string;
+type FormatMilliseconds = (milliseconds: number | undefined | null) => string;
 type FormatDate = (date: string, outputFormat?: string) => string;
 
 export const formatMilliseconds: FormatMilliseconds = (milliseconds) => {
@@ -12,7 +12,7 @@ export const formatMilliseconds: FormatMilliseconds = (milliseconds) => {
 
     return `${formattedMinutes}:${formattedSeconds}`;
   } else {
-    return "00:00"; //add test for this case
+    return "00:00";
   }
 };
 

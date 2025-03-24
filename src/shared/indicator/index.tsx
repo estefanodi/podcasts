@@ -5,5 +5,5 @@ type IndicatorProps = {
 };
 
 export const Indicator: React.FC<IndicatorProps> = ({ isVisible }) => {
-  return isVisible ? <StyledIndicator data-testid="styled-indicator" /> : null;
+  return isVisible ? <StyledIndicator data-testid="header-indicator" /> : null;
 };

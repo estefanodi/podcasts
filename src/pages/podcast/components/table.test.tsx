@@ -1,95 +1,53 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { fireEvent, render, screen } from "@testing-library/react";
 
-import { Table } from "./table";
-import { formatDate, formatMilliseconds } from "@utils/dates-and-time-helpers";
-import { mockEpisodes } from "@src/mocks/episodes";
+import { Table, type TableProps } from "./table";
+import { TABLE_HEADER } from "@src/constants";
+import { formatMilliseconds, formatDate } from "@utils/dates-and-time-helpers";
+import { Episode } from "@src/types";
+import { mockEpisodes as episodes } from "@src/mocks/episodes";
 
-jest.mock("@src/constants", () => ({
-  TABLE_HEADER: ["Track", "Release Date", "Duration"],
-}));
+const mockEpisodes: Episode[] = [episodes.results[0], episodes.results[1]];
+const mockOnClickItem = jest.fn();
 
-jest.mock("@utils/dates-and-time-helpers", () => ({
-  formatDate: jest
-    .fn()
-    .mockImplementation((date, format) => `formatted ${date}`),
-  formatMilliseconds: jest.fn().mockImplementation((ms) => `formatted ${ms}`),
-}));
+const renderComponent = ({ episodes, onClickItem }: TableProps) =>
+  render(<Table episodes={episodes} onClickItem={onClickItem} />);
 
-jest.mock("@src/router", () => ({
-  paths: {
-    episode: jest
-      .fn()
-      .mockImplementation((collectionId, trackId) => `/episode/${trackId}`),
-  },
-}));
+describe("Table", () => {
+  it("renders table headers correctly", () => {
+    renderComponent({ episodes: mockEpisodes, onClickItem: mockOnClickItem });
 
-describe("Table component", () => {
-  describe("Table", () => {
-    test("renders table with correct headers", () => {
-      render(
-        <MemoryRouter>
-          <Table episodes={mockEpisodes.results} />
-        </MemoryRouter>
-      );
-
-      // Check headers
-      expect(screen.getByText("Track")).toBeInTheDocument();
-      expect(screen.getByText("Release Date")).toBeInTheDocument();
-      expect(screen.getByText("Duration")).toBeInTheDocument();
+    TABLE_HEADER.forEach((header) => {
+      expect(screen.getByText(header)).toBeInTheDocument();
     });
+  });
 
-    test("renders table rows with correct data", () => {
-      render(
-        <MemoryRouter>
-          <Table episodes={mockEpisodes.results} />
-        </MemoryRouter>
-      );
+  it("renders episodes correctly", () => {
+    renderComponent({ episodes: mockEpisodes, onClickItem: mockOnClickItem });
 
-      // Check first row
-      expect(screen.getByText("Episode 1")).toBeInTheDocument();
-      expect(
-        screen.getByText("formatted 2025-03-22T12:00:00Z")
-      ).toBeInTheDocument();
-      expect(screen.getByText("formatted 2569000")).toBeInTheDocument();
+    expect(screen.getByText(mockEpisodes[0].trackName)).toBeInTheDocument();
+    expect(
+      screen.getByText(formatDate(mockEpisodes[0].releaseDate, "dd/MM/yyyy"))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(formatMilliseconds(mockEpisodes[0].trackTimeMillis))
+    ).toBeInTheDocument();
 
-      // Check second row
-      expect(screen.getByText("Episode 2")).toBeInTheDocument();
-      expect(
-        screen.getByText("formatted 2025-03-23T12:00:00Z")
-      ).toBeInTheDocument();
-      expect(screen.getByText("formatted 1234567")).toBeInTheDocument();
-    });
+    expect(screen.getByText(mockEpisodes[1].trackName)).toBeInTheDocument();
+    expect(
+      screen.getByText(formatDate(mockEpisodes[1].releaseDate, "dd/MM/yyyy"))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(formatMilliseconds(mockEpisodes[1].trackTimeMillis))
+    ).toBeInTheDocument();
+  });
 
-    test("renders correct links for each episode", () => {
-      render(
-        <MemoryRouter>
-          <Table episodes={mockEpisodes.results} />
-        </MemoryRouter>
-      );
+  it("calls onClickItem when an episode is clicked", () => {
+    renderComponent({ episodes: mockEpisodes, onClickItem: mockOnClickItem });
 
-      // Check link for first row
-      const link1 = screen.getByText("Episode 1");
-      expect(link1).toHaveAttribute("href", "/episode/1");
+    const episodeLink = screen.getByText(mockEpisodes[0].trackName);
 
-      // Check link for second row
-      const link2 = screen.getByText("Episode 2");
-      expect(link2).toHaveAttribute("href", "/episode/2");
-    });
+    fireEvent.click(episodeLink);
 
-    test("formats date and time correctly", () => {
-      render(
-        <MemoryRouter>
-          <Table episodes={mockEpisodes.results} />
-        </MemoryRouter>
-      );
-
-      // Verify the formatDate and formatMilliseconds function calls
-      expect(formatDate).toHaveBeenCalledWith(
-        "2025-03-22T12:00:00Z",
-        "dd/MM/yyyy"
-      );
-      expect(formatMilliseconds).toHaveBeenCalledWith(2569000);
-    });
+    expect(mockOnClickItem).toHaveBeenNthCalledWith(1, mockEpisodes[0]);
   });
 });

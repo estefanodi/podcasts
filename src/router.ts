@@ -23,12 +23,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        id: "podcasts",
         Component: Podcasts,
       },
       {
         path: "podcast/:podcastId",
-        id: "podcast",
         Component: Podcast,
       },
       {

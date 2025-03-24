@@ -8,7 +8,7 @@ export const GridContainer: React.FC = () => {
   const { podcasts } = useAppContext();
 
   return (
-    <StyledGridContainer>
+    <StyledGridContainer data-testid="podcasts-container">
       {podcasts.map((item: Podcast) => {
         const podcastTitle = item.title.label;
         const podcastArtist = item["im:artist"].label;
