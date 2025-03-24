@@ -9,15 +9,15 @@ import {
   StyledLink,
 } from "../styles";
 import { TABLE_HEADER } from "@src/constants";
-import type { PodcastDetails } from "@src/types";
 import { formatMilliseconds, formatDate } from "@utils/dates-and-time-helpers";
-import { paths } from "@src/router";
+import type { Episode } from "@src/types";
 
 type TableProps = {
-  podcastDetails: PodcastDetails[];
+  episodes: Episode[];
+  onClickItem: (episode: Episode) => void;
 };
 
-export const Table: React.FC<TableProps> = ({ podcastDetails }) => {
+export const Table: React.FC<TableProps> = ({ episodes, onClickItem }) => {
   return (
     <StyledTableWrapper>
       <StyledTable>
@@ -29,18 +29,19 @@ export const Table: React.FC<TableProps> = ({ podcastDetails }) => {
           </StyledTr>
         </StyledTableHeader>
         <tbody>
-          {podcastDetails.map((item: PodcastDetails) => {
-            const episodeUrl = paths.episode(item.collectionId, item.trackId);
+          {episodes.map((episode: Episode) => {
             return (
-              <StyledTableRow key={item.trackId}>
+              <StyledTableRow key={episode.trackId}>
                 <StyledTableCell>
-                  <StyledLink to={episodeUrl}>{item.trackName}</StyledLink>
+                  <StyledLink onClick={() => onClickItem(episode)}>
+                    {episode.trackName}
+                  </StyledLink>
                 </StyledTableCell>
                 <StyledTableCell>
-                  {formatDate(item.releaseDate, "dd/MM/yyyy")}
+                  {formatDate(episode.releaseDate, "dd/MM/yyyy")}
                 </StyledTableCell>
                 <StyledTableCell>
-                  {formatMilliseconds(item.trackTimeMillis)}
+                  {formatMilliseconds(episode.trackTimeMillis)}
                 </StyledTableCell>
               </StyledTableRow>
             );

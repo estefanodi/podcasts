@@ -28,7 +28,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({
 }) => {
   const navigateTo = useNavigate();
   const podcastUrl = paths.podcast(podcastId);
-  const state = {
+  const locationState = {
     podcastTitle,
     podcastArtist,
     podcastImageUrl,
@@ -36,7 +36,9 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({
   };
 
   return (
-    <StyledPodcastCard onClick={() => navigateTo(podcastUrl, { state })}>
+    <StyledPodcastCard
+      onClick={() => navigateTo(podcastUrl, { state: locationState })}
+    >
       <StyledRoundedImage src={podcastImageUrl} alt={`${podcastTitle} name`} />
       <StyledPodcastCardBottom>
         <StyledPodcastTitle>{podcastTitle}</StyledPodcastTitle>

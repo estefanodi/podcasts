@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router";
 
 import {
   APP_MAIN_COLOR,
@@ -72,7 +71,6 @@ export const StyledHeaderCell = styled.th`
   padding: 12px;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.span`
   color: ${APP_MAIN_COLOR};
-  text-decoration: none;
 `;
