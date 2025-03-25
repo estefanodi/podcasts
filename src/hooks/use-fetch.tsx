@@ -31,7 +31,11 @@ export const useFetch = <T,>(
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
-      const fetchedData = await response.json();
+      const jsonResponse = await response.json();
+      const fetchedData = jsonResponse.contents
+        ? JSON.parse(jsonResponse.contents)
+        : jsonResponse;
+
       setData(fetchedData);
 
       const responseToCache = new Response(

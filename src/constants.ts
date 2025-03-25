@@ -18,9 +18,15 @@ export const TABLE_HEADER = ["Title", "Date", "Duration"];
 
 // api
 export const FETCH_PODCASTS_URL =
-  "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
+  "https://api.allorigins.win/get?url=" +
+  encodeURIComponent(
+    "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
+  );
 export const FETCH_EPISODES_URL = (podcastId: string): string =>
-  `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
+  "https://api.allorigins.win/get?url=" +
+  encodeURIComponent(
+    `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`
+  );
 
 // cache
 export const CACHE_NAME = "api-cache";
