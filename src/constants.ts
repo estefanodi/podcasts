@@ -15,6 +15,8 @@ export const DESCRIPTION = "Description:";
 export const EPISODES = "Episodes: ";
 export const BY = "by  ";
 export const TABLE_HEADER = ["Title", "Date", "Duration"];
+export const AUDIO_NOT_SUPPORTED =
+  "Your browser does not support the audio tag.";
 
 // api
 export const FETCH_PODCASTS_URL =

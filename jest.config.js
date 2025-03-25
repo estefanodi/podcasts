@@ -1,5 +1,4 @@
 module.exports = {
-  testEnvironment: "node",
   transform: {
     "^.+\\.[t|j]sx?$": "babel-jest",
   },
@@ -11,5 +10,4 @@ module.exports = {
     "^@contexts/(.*)$": "<rootDir>/src/contexts/$1",
     "^@shared/(.*)$": "<rootDir>/src/shared/$1",
   },
-  type: "module",
 };
