@@ -39,7 +39,12 @@ describe("AppProvider", () => {
     renderComponent();
 
     expect(screen.getByText(/podcasts count: 0/i)).toBeInTheDocument();
-    expect(screen.getByText(/loading: false/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/isFetchPodcastsLoading: false/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/isFetchEpisodesLoading: false/i)
+    ).toBeInTheDocument();
   });
 
   it("fetches podcasts when mounted on '/'", async () => {
@@ -95,7 +100,8 @@ const TestComponent: React.FC<{ filter?: string; podcastId?: string }> = ({
   const {
     podcastsCounter,
     podcasts,
-    isLoading,
+    isFetchEpisodesLoading,
+    isFetchPodcastsLoading,
     setInputWithBadgeValue,
     setPodcastId: setId,
     episodesCount,
@@ -110,7 +116,8 @@ const TestComponent: React.FC<{ filter?: string; podcastId?: string }> = ({
     <div>
       <p>Podcasts Count: {podcastsCounter}</p>
       <p>Episodes Count: {episodesCount}</p>
-      <p>Loading: {isLoading.toString()}</p>
+      <p>isFetchPodcastsLoading: {isFetchPodcastsLoading.toString()}</p>
+      <p>isFetchEpisodesLoading: {isFetchEpisodesLoading.toString()}</p>
     </div>
   );
 };

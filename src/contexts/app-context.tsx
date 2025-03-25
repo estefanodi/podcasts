@@ -15,7 +15,8 @@ type AppContextType = {
   podcastsCounter: number;
   setInputWithBadgeValue: React.Dispatch<React.SetStateAction<string>>;
   inputWithBadgeValue: string;
-  isLoading: boolean;
+  isFetchPodcastsLoading: boolean;
+  isFetchEpisodesLoading: boolean;
   episodes: Episode[];
   setPodcastId: React.Dispatch<React.SetStateAction<string>>;
   episodesCount: number;
@@ -88,7 +89,8 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({
         podcastsCounter: filteredPodcasts.length ?? 0,
         setInputWithBadgeValue,
         inputWithBadgeValue,
-        isLoading: isFetchPodcastsLoading || isFetchEpisodesLoading,
+        isFetchPodcastsLoading,
+        isFetchEpisodesLoading,
         episodes: episodesData?.results || [],
         episodesCount: episodesData?.results?.length ?? 0,
         setPodcastId,

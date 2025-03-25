@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import {
   APP_MAIN_COLOR,
@@ -74,4 +74,18 @@ export const StyledHeaderCell = styled.th`
 export const StyledLink = styled.span`
   color: ${APP_MAIN_COLOR};
   cursor: pointer;
+`;
+
+const shimmer = keyframes`
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  `;
+
+export const StyledSkeletonCell = styled.div`
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 200px 100%;
+  animation: ${shimmer} 1.5s infinite;
+  border-radius: 4px;
 `;

@@ -6,11 +6,11 @@ import { StyledLayout } from "./styles";
 import { useAppContext } from "./contexts/app-context";
 
 export const Layout: React.FC = () => {
-  const { isLoading } = useAppContext();
+  const { isFetchPodcastsLoading, isFetchEpisodesLoading } = useAppContext();
 
   return (
     <StyledLayout>
-      <Header isLoading={isLoading} />
+      <Header isLoading={isFetchPodcastsLoading || isFetchEpisodesLoading} />
       <main>
         <Outlet />
       </main>

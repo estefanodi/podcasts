@@ -11,13 +11,19 @@ import {
 import { TABLE_HEADER } from "@src/constants";
 import { formatMilliseconds, formatDate } from "@utils/dates-and-time-helpers";
 import type { Episode } from "@src/types";
+import { TableSkeleton } from "./table-skeleton";
 
-type TableProps = {
+export type TableProps = {
   episodes: Episode[];
   onClickItem: (episode: Episode) => void;
+  isLoading: boolean;
 };
 
-export const Table: React.FC<TableProps> = ({ episodes, onClickItem }) => {
+export const Table: React.FC<TableProps> = ({
+  episodes,
+  onClickItem,
+  isLoading,
+}) => {
   return (
     <StyledTableWrapper>
       <StyledTable>
@@ -28,25 +34,29 @@ export const Table: React.FC<TableProps> = ({ episodes, onClickItem }) => {
             ))}
           </StyledTr>
         </StyledTableHeader>
-        <tbody>
-          {episodes.map((episode: Episode) => {
-            return (
-              <StyledTableRow key={episode.trackId}>
-                <StyledTableCell>
-                  <StyledLink onClick={() => onClickItem(episode)}>
-                    {episode.trackName}
-                  </StyledLink>
-                </StyledTableCell>
-                <StyledTableCell>
-                  {formatDate(episode.releaseDate, "dd/MM/yyyy")}
-                </StyledTableCell>
-                <StyledTableCell>
-                  {formatMilliseconds(episode.trackTimeMillis)}
-                </StyledTableCell>
-              </StyledTableRow>
-            );
-          })}
-        </tbody>
+        {isLoading ? (
+          <TableSkeleton />
+        ) : (
+          <tbody>
+            {episodes.map((episode: Episode) => {
+              return (
+                <StyledTableRow key={episode.trackId}>
+                  <StyledTableCell>
+                    <StyledLink onClick={() => onClickItem(episode)}>
+                      {episode.trackName}
+                    </StyledLink>
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    {formatDate(episode.releaseDate, "dd/MM/yyyy")}
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    {formatMilliseconds(episode.trackTimeMillis)}
+                  </StyledTableCell>
+                </StyledTableRow>
+              );
+            })}
+          </tbody>
+        )}
       </StyledTable>
     </StyledTableWrapper>
   );

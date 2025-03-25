@@ -12,8 +12,13 @@ export const Podcast: React.FC = () => {
   const { podcastId } = useParams();
   const location = useLocation();
   const navigateTo = useNavigate();
-  const { setPodcastId, episodes, episodesCount, setSelectedEpisode } =
-    useAppContext();
+  const {
+    setPodcastId,
+    episodes,
+    episodesCount,
+    setSelectedEpisode,
+    isFetchEpisodesLoading,
+  } = useAppContext();
   const locationState = location.state || {};
 
   useEffect(() => {
@@ -32,7 +37,11 @@ export const Podcast: React.FC = () => {
     <SidebarLayout>
       <>
         <Toolbar episodesCount={episodesCount} />
-        <Table episodes={episodes} onClickItem={onClickItem} />
+        <Table
+          episodes={episodes}
+          onClickItem={onClickItem}
+          isLoading={isFetchEpisodesLoading}
+        />
       </>
     </SidebarLayout>
   );
