@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 type FormatMilliseconds = (milliseconds: number | undefined | null) => string;
 type FormatDate = (date: string, outputFormat?: string) => string;
 
@@ -16,5 +14,14 @@ export const formatMilliseconds: FormatMilliseconds = (milliseconds) => {
   }
 };
 
-export const formatDate: FormatDate = (date, outputFormat = "dd/MM/yyyy") =>
-  format(new Date(date), outputFormat);
+export const formatDate: FormatDate = (date, outputFormat = "dd/MM/yyyy") => {
+  const dateObj = new Date(date);
+  const day = dateObj.getDate().toString().padStart(2, "0");
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+  const year = dateObj.getFullYear();
+
+  return outputFormat
+    .replace("dd", day)
+    .replace("MM", month)
+    .replace("yyyy", year.toString());
+};
