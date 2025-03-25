@@ -33,6 +33,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({
     podcastArtist,
     podcastImageUrl,
     podcastDescription,
+    podcastId,
   };
 
   return (

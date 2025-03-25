@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { APP_MAIN_COLOR, LIGHT_GRAY_COLOR } from "../../constants";
+
+import { APP_MAIN_COLOR, BOX_SHADOW_COLOR } from "../../constants";
 
 export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  border: 1px solid ${LIGHT_GRAY_COLOR};
+  box-shadow: ${BOX_SHADOW_COLOR};
 `;
 
 export const StyledTitle = styled.h1`

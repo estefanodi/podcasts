@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 
 import { Header, type HeaderProps } from ".";
 import { APP_NAME } from "@src/constants";
 
 const renderComponent = ({ isLoading }: HeaderProps) =>
-  render(<Header isLoading={isLoading} />);
+  render(
+    <MemoryRouter>
+      <Header isLoading={isLoading} />
+    </MemoryRouter>
+  );
 
 describe("Header", () => {
   it("renders the app name", () => {

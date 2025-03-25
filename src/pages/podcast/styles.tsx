@@ -73,4 +73,5 @@ export const StyledHeaderCell = styled.th`
 
 export const StyledLink = styled.span`
   color: ${APP_MAIN_COLOR};
+  cursor: pointer;
 `;

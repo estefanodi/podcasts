@@ -8,6 +8,7 @@ import type {
 } from "@src/types";
 
 export const paths = {
+  home: "/",
   podcast: (podcastId: PodcastType["id"]["attributes"]["im:id"]) =>
     `/podcast/${podcastId}`,
   episode: (

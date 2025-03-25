@@ -11,8 +11,13 @@ export const SidebarLayout: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const location = useLocation();
-  const { podcastTitle, podcastArtist, podcastImageUrl, podcastDescription } =
-    location.state || {};
+  const {
+    podcastTitle,
+    podcastArtist,
+    podcastImageUrl,
+    podcastDescription,
+    podcastId,
+  } = location.state || {};
 
   return (
     <StyledContainer>
@@ -22,6 +27,7 @@ export const SidebarLayout: React.FC<React.PropsWithChildren> = ({
           podcastTitle={podcastTitle}
           podcastArtist={podcastArtist}
           podcastDescription={podcastDescription}
+          podcastId={podcastId}
         />
       </StyledSidebarContainer>
       <StyledRightContainer>{children}</StyledRightContainer>

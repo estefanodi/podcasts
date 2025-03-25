@@ -15,6 +15,7 @@ export const StyledSidebarImage = styled.img`
   height: 180px;
   align-self: center;
   margin: 5%;
+  cursor: pointer;
 `;
 
 export const StyledDetailsSection = styled.div`
@@ -28,11 +29,13 @@ export const StyledDetailsSection = styled.div`
     margin: 0;
     font-size: 1rem;
     font-weight: 800;
+    cursor: pointer;
   }
 
   & p {
     margin-top: 5px;
     margin-bottom: 0px;
+    cursor: pointer;
   }
 `;
 

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 
 import { Sidebar, type SidebarProps } from ".";
 import { DESCRIPTION } from "@src/constants";
@@ -8,14 +9,18 @@ const renderComponent = ({
   podcastTitle,
   podcastArtist,
   podcastDescription,
+  podcastId,
 }: SidebarProps) =>
   render(
-    <Sidebar
-      podcastImageUrl={podcastImageUrl}
-      podcastTitle={podcastTitle}
-      podcastArtist={podcastArtist}
-      podcastDescription={podcastDescription}
-    />
+    <MemoryRouter>
+      <Sidebar
+        podcastImageUrl={podcastImageUrl}
+        podcastTitle={podcastTitle}
+        podcastArtist={podcastArtist}
+        podcastDescription={podcastDescription}
+        podcastId={podcastId}
+      />
+    </MemoryRouter>
   );
 
 describe("Sidebar", () => {
@@ -24,6 +29,7 @@ describe("Sidebar", () => {
     podcastTitle: "Test Podcast",
     podcastArtist: "Test Artist",
     podcastDescription: "This is a test description.",
+    podcastId: "123",
   };
   it("renders the podcast image with the correct alt text and src", () => {
     renderComponent({ ...mockProps });
