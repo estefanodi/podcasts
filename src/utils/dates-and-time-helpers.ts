@@ -18,15 +18,3 @@ export const formatMilliseconds: FormatMilliseconds = (milliseconds) => {
 
 export const formatDate: FormatDate = (date, outputFormat = "dd/MM/yyyy") =>
   format(new Date(date), outputFormat);
-
-export const isDateDifference24Hours = (date: string) => {
-  const dateToCompare = new Date(date);
-  const currentDate = new Date();
-
-  const timeDifference = Math.abs(
-    currentDate.getTime() - dateToCompare.getTime()
-  );
-  const hoursDifference = timeDifference / (1000 * 60 * 60);
-
-  return hoursDifference >= 24;
-};

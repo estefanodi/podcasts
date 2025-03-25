@@ -2,7 +2,7 @@
 export const APP_MAIN_COLOR = "#0072B1";
 export const LIGHT_GRAY_COLOR = "#ddd";
 export const WHITE_COLOR = "#ffffff";
-export const BOX_SHADOW_COLOR = "0px 6px 12px rgba(0, 0, 0, 0.15)";
+export const BOX_SHADOW_COLOR = "0px 6px 12px rgba(0, 0, 0, 0.50)";
 export const GRAY_COLOR = "#777";
 export const GRAY_COLOR_2 = "#f3f4f6";
 export const DARK_GRAY_COLOR = "#333";
@@ -22,6 +22,6 @@ export const FETCH_PODCASTS_URL =
 export const FETCH_EPISODES_URL = (podcastId: string): string =>
   `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
 
-// local storage keys
-export const PODCASTS_FETCH_DATE_TIME_KEY = "podcasts_fetch_date_time";
-export const PODCASTS_LIST_KEY = "podcasts_list";
+// cache
+export const CACHE_NAME = "api-cache";
+export const CACHE_EXPIRATION_MS = 1000 * 60 * 60 * 24;

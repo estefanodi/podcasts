@@ -1,22 +1,14 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  useContext,
-  useEffect,
-} from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 import type { Podcast, Episode } from "@src/types";
 import { useFetch } from "@src/hooks/use-fetch";
 import { filterItems } from "@utils/filter-podcasts";
-import { getLocalStorageItem, setLocalStorageItem } from "@utils/local-storage";
 import {
   FETCH_PODCASTS_URL,
   FETCH_EPISODES_URL,
-  PODCASTS_FETCH_DATE_TIME_KEY,
-  PODCASTS_LIST_KEY,
+  CACHE_NAME,
+  CACHE_EXPIRATION_MS,
 } from "@src/constants";
-import { isDateDifference24Hours } from "@utils/dates-and-time-helpers";
 
 type AppContextType = {
   podcasts: Podcast[];
@@ -27,62 +19,52 @@ type AppContextType = {
   episodes: Episode[];
   setPodcastId: React.Dispatch<React.SetStateAction<string>>;
   episodesCount: number;
-  setSelectedEpisode: React.Dispatch<React.SetStateAction<Episode>>;
-  selectedEpisode: Episode;
+  setSelectedEpisode: React.Dispatch<React.SetStateAction<Episode | null>>;
+  selectedEpisode: Episode | null;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ children }: { children: ReactNode }) => {
+export const AppProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [inputWithBadgeValue, setInputWithBadgeValue] = useState<string>("");
   const [podcastId, setPodcastId] = useState<string>("");
-  const [selectedEpisode, setSelectedEpisode] = useState<any>({});
+  const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
   const {
     data: podcastsData,
     isLoading: isFetchPodcastsLoading,
-    error: isFetchPodcastsError,
     fetchData: fetchPodcastsData,
-  } = useFetch<any>(FETCH_PODCASTS_URL);
+  } = useFetch<any>(FETCH_PODCASTS_URL, CACHE_NAME, CACHE_EXPIRATION_MS);
   const {
     data: episodesData,
     isLoading: isFetchEpisodesLoading,
-    error: isFetchError,
     fetchData: fetchPodcastDetailsData,
-  } = useFetch<any>(podcastId ? FETCH_EPISODES_URL(podcastId) : "");
+  } = useFetch<any>(
+    podcastId ? FETCH_EPISODES_URL(podcastId) : "",
+    CACHE_NAME,
+    CACHE_EXPIRATION_MS
+  );
 
   const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>(
     podcastsData?.feed?.entry || []
   );
+  const { pathname } = window.location;
 
   useEffect(() => {
-    const lastFetchDate = getLocalStorageItem(PODCASTS_FETCH_DATE_TIME_KEY);
-    const currentDate = new Date();
-    const { pathname } = window.location;
-
-    if (pathname === "/" || isDateDifference24Hours(lastFetchDate)) {
-      if (lastFetchDate === null) {
-        fetchPodcastsData();
-        setLocalStorageItem(PODCASTS_FETCH_DATE_TIME_KEY, currentDate);
-      } else {
-        const storedPodcasts = getLocalStorageItem(PODCASTS_LIST_KEY);
-        if (storedPodcasts) {
-          const podcasts: Podcast[] = storedPodcasts || [];
-          setFilteredPodcasts(podcasts);
-        }
-      }
+    if (pathname === "/" && !podcastsData) {
+      fetchPodcastsData();
     }
-  }, [fetchPodcastsData]);
+  }, [pathname]);
 
   useEffect(() => {
-    if (podcastsData) {
-      const podcasts: Podcast[] = podcastsData?.feed?.entry || [];
-      setLocalStorageItem(PODCASTS_LIST_KEY, podcasts);
-      setFilteredPodcasts(podcasts);
+    if (podcastsData?.feed?.entry) {
+      setFilteredPodcasts(podcastsData.feed.entry);
     }
   }, [podcastsData]);
 
   useEffect(() => {
-    const dataToFilter = podcastsData ?? getLocalStorageItem(PODCASTS_LIST_KEY);
+    const dataToFilter = podcastsData?.feed?.entry;
     if (dataToFilter) {
       if (!inputWithBadgeValue) {
         setFilteredPodcasts(dataToFilter);
@@ -94,8 +76,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [inputWithBadgeValue]);
 
   useEffect(() => {
-    console.log(podcastId);
-    fetchPodcastDetailsData();
+    if (podcastId) {
+      fetchPodcastDetailsData();
+    }
   }, [podcastId]);
 
   return (
