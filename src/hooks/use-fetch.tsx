@@ -43,6 +43,7 @@ export const useFetch = <T,>(
       );
       cache.put(url, responseToCache);
     } catch (err: any) {
+      console.error(err);
       setError(err.message);
     } finally {
       setIsLoading(false);
