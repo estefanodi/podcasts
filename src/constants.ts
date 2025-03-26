@@ -14,7 +14,8 @@ export const CARD_AUTHOR = "Author: ";
 export const DESCRIPTION = "Description:";
 export const EPISODES = "Episodes: ";
 export const BY = "by  ";
-export const TABLE_HEADER = ["Title", "Date", "Duration"];
+export const TABLE_HEADER_ITEMS = ["Title", "Date", "Duration"];
+export const DEFAULT_TABLE_ROWS = 10;
 export const AUDIO_NOT_SUPPORTED =
   "Your browser does not support the audio tag.";
 export const TABLE_DATE_FORMAT = "dd/MM/yyyy";

@@ -3,10 +3,12 @@ import { useParams, useLocation, useNavigate } from "react-router";
 
 import { SidebarLayout } from "@shared/sidebar-layout.tsx";
 import { useAppContext } from "@contexts/app-context";
+import { TABLE_HEADER_ITEMS } from "@src/constants";
 import { paths } from "@src/router";
+import type { Episode } from "@src/types";
+import { TableBody } from "./components/table-body";
 import { Table } from "./components/table";
 import { Toolbar } from "./components/toolbar";
-import type { Episode } from "@src/types";
 
 export const Podcast: React.FC = () => {
   const { podcastId } = useParams();
@@ -38,10 +40,11 @@ export const Podcast: React.FC = () => {
       <>
         <Toolbar episodesCount={episodesCount} />
         <Table
-          episodes={episodes}
-          onClickItem={onClickItem}
           isLoading={isFetchEpisodesLoading}
-        />
+          headerItems={TABLE_HEADER_ITEMS}
+        >
+          <TableBody episodes={episodes} onClickItem={onClickItem} />
+        </Table>
       </>
     </SidebarLayout>
   );
