@@ -8,7 +8,7 @@ import {
   StyledHeaderCell,
   StyledLink,
 } from "../styles";
-import { TABLE_HEADER } from "@src/constants";
+import { TABLE_HEADER, TABLE_DATE_FORMAT } from "@src/constants";
 import { formatMilliseconds, formatDate } from "@utils/dates-and-time-helpers";
 import type { Episode } from "@src/types";
 import { TableSkeleton } from "./table-skeleton";
@@ -47,7 +47,7 @@ export const Table: React.FC<TableProps> = ({
                     </StyledLink>
                   </StyledTableCell>
                   <StyledTableCell>
-                    {formatDate(episode.releaseDate, "dd/MM/yyyy")}
+                    {formatDate(episode.releaseDate, TABLE_DATE_FORMAT)}
                   </StyledTableCell>
                   <StyledTableCell>
                     {formatMilliseconds(episode.trackTimeMillis)}

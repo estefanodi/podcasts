@@ -17,6 +17,7 @@ export const BY = "by  ";
 export const TABLE_HEADER = ["Title", "Date", "Duration"];
 export const AUDIO_NOT_SUPPORTED =
   "Your browser does not support the audio tag.";
+export const TABLE_DATE_FORMAT = "dd/MM/yyyy";
 
 // api
 export const FETCH_PODCASTS_URL =
