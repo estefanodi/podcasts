@@ -42,10 +42,11 @@ export const StyledDetailsSection = styled.div`
 export const StyledDescriptionSection = styled.div`
   border-top: 1px solid ${LIGHT_GRAY_COLOR};
   padding: 20px 0;
+  overflow-wrap: break-word;
 
   & h2 {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 800;
   }
 

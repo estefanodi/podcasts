@@ -16,5 +16,5 @@ export const StyledRightContainer = styled.div`
   flex: 70%;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 25px;
 `;

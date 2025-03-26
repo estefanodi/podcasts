@@ -19,10 +19,14 @@ export const StyledInputWrapper = styled.div`
 export const StyledBadge = styled.span`
   background-color: ${APP_MAIN_COLOR};
   color: ${WHITE_COLOR};
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 7px;
+  font-size: 18px;
   margin-right: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  min-width: 40px;
+  text-align: center;
 `;
 
 export const StyledInput = styled.input`
@@ -31,7 +35,7 @@ export const StyledInput = styled.input`
   border: 1px solid ${LIGHT_GRAY_COLOR};
   border-radius: 4px;
   font-size: 16px;
-  height: 30px;
+  height: 35px;
   width: 300px;
   outline-color: ${APP_MAIN_COLOR};
 `;
@@ -58,7 +62,7 @@ export const StyledPodcastCard = styled.div`
 
 export const StyledPodcastCardBottom = styled.div`
   width: 100%;
-  height: 120px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +72,7 @@ export const StyledPodcastCardBottom = styled.div`
 `;
 
 export const StyledPodcastTitle = styled.h2`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: ${DARK_GRAY_COLOR};
   margin: 0;
@@ -85,7 +89,7 @@ export const StyledRoundedImage = styled.img`
   clip-path: circle(50% at 50% 50%);
   object-fit: cover;
   position: absolute;
-  top: 0;
+  top: -10px;
   left: 50%;
   transform: translate(-50%, 0);
 `;

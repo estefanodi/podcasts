@@ -16,6 +16,7 @@ export const StyledToolbarContainer = styled.div`
   margin-bottom: 30px;
   align-items: center;
   padding-left: 10px;
+  box-sizing: border-box;
 
   & p {
     font-size: 1.2rem;
@@ -29,6 +30,7 @@ export const StyledTableWrapper = styled.div`
   box-shadow: ${BOX_SHADOW_COLOR};
   height: 50vh;
   padding: 0 10px;
+  box-sizing: border-box;
 `;
 
 export const StyledTable = styled.table`
