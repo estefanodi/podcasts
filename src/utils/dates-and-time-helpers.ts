@@ -1,9 +1,11 @@
+import { INVALID_DATE, DEFAULT_TRACK_TIME } from "@src/constants";
+
 type FormatMilliseconds = (milliseconds: number | undefined | null) => string;
 type FormatDate = (date: string, outputFormat?: string) => string;
 
 export const formatMilliseconds: FormatMilliseconds = (milliseconds) => {
   if (milliseconds == null || isNaN(milliseconds)) {
-    return "00:00";
+    return DEFAULT_TRACK_TIME;
   }
 
   const minutes = Math.floor(milliseconds / 60000);
@@ -18,7 +20,7 @@ export const formatDate: FormatDate = (date, outputFormat = "dd/MM/yyyy") => {
   const dateObj = new Date(date);
 
   if (isNaN(dateObj.getTime())) {
-    return "00:00";
+    return INVALID_DATE;
   }
 
   const day = dateObj.getDate().toString().padStart(2, "0");

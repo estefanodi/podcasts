@@ -14,11 +14,12 @@ export const CARD_AUTHOR = "Author: ";
 export const DESCRIPTION = "Description:";
 export const EPISODES = "Episodes: ";
 export const BY = "by  ";
-export const TABLE_HEADER_ITEMS = ["Title", "Date", "Duration"];
-export const DEFAULT_TABLE_ROWS = 10;
 export const AUDIO_NOT_SUPPORTED =
   "Your browser does not support the audio tag.";
 export const TABLE_DATE_FORMAT = "dd/MM/yyyy";
+export const INVALID_DATE = "Invalid date";
+export const DEFAULT_TRACK_TIME = "00:00";
+export const TABLE_HEADER_ITEMS = ["Title", "Date", "Duration"];
 
 // api
 export const FETCH_PODCASTS_URL =
@@ -35,3 +36,6 @@ export const FETCH_EPISODES_URL = (podcastId: string): string =>
 // cache
 export const CACHE_NAME = "api-cache";
 export const CACHE_EXPIRATION_MS = 1000 * 60 * 60 * 24;
+
+//
+export const DEFAULT_TABLE_ROWS = 10;

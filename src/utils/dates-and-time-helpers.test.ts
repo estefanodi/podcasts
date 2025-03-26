@@ -1,4 +1,5 @@
 import { formatMilliseconds, formatDate } from "./dates-and-time-helpers";
+import { DEFAULT_TRACK_TIME } from "@src/constants";
 
 describe("formatMilliseconds", () => {
   describe("when the date provided has a valid format", () => {
@@ -17,13 +18,13 @@ describe("formatMilliseconds", () => {
     it("returns `00:00` when milliseconds is undefined", () => {
       const result = formatMilliseconds(undefined);
 
-      expect(result).toBe("00:00");
+      expect(result).toBe(DEFAULT_TRACK_TIME);
     });
 
     it("returns `00:00` when milliseconds is null", () => {
       const result = formatMilliseconds(null);
 
-      expect(result).toBe("00:00");
+      expect(result).toBe(DEFAULT_TRACK_TIME);
     });
   });
 });
