@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { APP_MAIN_COLOR } from "../../constants";
+
+import { APP_MAIN_COLOR } from "@src/constants";
 
 export const StyledIndicator = styled.div`
   width: 15px;

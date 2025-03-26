@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { LIGHT_GRAY_COLOR, BOX_SHADOW_COLOR } from "@src/constants";
 
 export const StyledSidebarContainer = styled.div`

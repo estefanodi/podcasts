@@ -3,22 +3,24 @@ import { MemoryRouter } from "react-router";
 
 import { SidebarLayout } from ".";
 
+const mockState = {
+  podcastTitle: "Test Podcast",
+  podcastArtist: "Test Artist",
+  podcastImageUrl: "https://example.com/image.jpg",
+  podcastDescription: "This is a test description.",
+};
+const mockChildrenContent = "Children content";
+
+const renderComponent = () =>
+  render(
+    <MemoryRouter initialEntries={[{ pathname: "/", state: mockState }]}>
+      <SidebarLayout>{mockChildrenContent}</SidebarLayout>
+    </MemoryRouter>
+  );
+
 describe("SidebarLayout", () => {
   it("renders Sidebar with correct data from location.state", () => {
-    const mockState = {
-      podcastTitle: "Test Podcast",
-      podcastArtist: "Test Artist",
-      podcastImageUrl: "https://example.com/image.jpg",
-      podcastDescription: "This is a test description.",
-    };
-
-    render(
-      <MemoryRouter initialEntries={[{ pathname: "/", state: mockState }]}>
-        <SidebarLayout>
-          <div>Children content</div>
-        </SidebarLayout>
-      </MemoryRouter>
-    );
+    renderComponent();
 
     expect(screen.getByText(mockState.podcastTitle)).toBeInTheDocument();
     expect(
@@ -31,15 +33,8 @@ describe("SidebarLayout", () => {
   });
 
   it("renders children content correctly", () => {
-    const childrenContent = "Children content";
-    render(
-      <MemoryRouter>
-        <SidebarLayout>
-          <div>{childrenContent}</div>
-        </SidebarLayout>
-      </MemoryRouter>
-    );
+    renderComponent();
 
-    expect(screen.getByText(childrenContent)).toBeInTheDocument();
+    expect(screen.getByText(mockChildrenContent)).toBeInTheDocument();
   });
 });

@@ -99,7 +99,6 @@ const TestComponent: React.FC<{ filter?: string; podcastId?: string }> = ({
 }) => {
   const {
     podcastsCounter,
-    podcasts,
     isFetchEpisodesLoading,
     isFetchPodcastsLoading,
     setInputWithBadgeValue,

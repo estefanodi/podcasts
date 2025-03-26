@@ -27,7 +27,7 @@ export const Podcast: React.FC = () => {
     }
   }, [podcastId]);
 
-  const onClickItem = (episode: Episode) => {
+  const onClickItem = (episode: Episode): void => {
     const episodeUrl = paths.episode(episode.collectionId, episode.trackId);
     setSelectedEpisode(episode);
     navigateTo(episodeUrl, { state: locationState });

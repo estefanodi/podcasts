@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 import { paths } from "@src/router";
 import { PodcastCard, type PodcastCardProps } from "./podcast-card";
+import { CARD_AUTHOR } from "@src/constants";
 
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
@@ -32,7 +33,7 @@ describe("PodcastCard", () => {
 
     expect(screen.getByText(podcastCardProps.podcastTitle)).toBeInTheDocument();
     expect(
-      screen.getByText(`Author: ${podcastCardProps.podcastArtist}`)
+      screen.getByText(`${CARD_AUTHOR}${podcastCardProps.podcastArtist}`)
     ).toBeInTheDocument();
     expect(
       screen.getByAltText(`${podcastCardProps.podcastTitle} name`)

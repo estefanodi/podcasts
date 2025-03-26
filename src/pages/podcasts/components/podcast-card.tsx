@@ -11,7 +11,7 @@ import type { Podcast, Image } from "@src/types";
 import { CARD_AUTHOR } from "@src/constants";
 import { paths } from "@src/router";
 
-type PodcastCardProps = {
+export type PodcastCardProps = {
   podcastTitle: Podcast["title"]["label"];
   podcastArtist: Podcast["im:artist"]["label"];
   podcastImageUrl: Image["label"];
@@ -39,6 +39,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({
   return (
     <StyledPodcastCard
       onClick={() => navigateTo(podcastUrl, { state: locationState })}
+      data-testid="podcast-card"
     >
       <StyledRoundedImage src={podcastImageUrl} alt={`${podcastTitle} name`} />
       <StyledPodcastCardBottom>

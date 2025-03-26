@@ -23,6 +23,8 @@ type AppContextType = {
   setSelectedEpisode: React.Dispatch<React.SetStateAction<Episode | null>>;
   selectedEpisode: Episode | null;
 };
+type PodcastsDataResponse = { feed: { entry: Podcast[] } };
+type EpisodeDataResponse = { results: Episode[] };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -36,12 +38,16 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({
     data: podcastsData,
     isLoading: isFetchPodcastsLoading,
     fetchData: fetchPodcastsData,
-  } = useFetch<any>(FETCH_PODCASTS_URL, CACHE_NAME, CACHE_EXPIRATION_MS);
+  } = useFetch<PodcastsDataResponse>(
+    FETCH_PODCASTS_URL,
+    CACHE_NAME,
+    CACHE_EXPIRATION_MS
+  );
   const {
     data: episodesData,
     isLoading: isFetchEpisodesLoading,
     fetchData: fetchPodcastDetailsData,
-  } = useFetch<any>(
+  } = useFetch<EpisodeDataResponse>(
     podcastId ? FETCH_EPISODES_URL(podcastId) : "",
     CACHE_NAME,
     CACHE_EXPIRATION_MS
@@ -56,7 +62,7 @@ export const AppProvider: React.FC<React.PropsWithChildren> = ({
     if (pathname === "/" && !podcastsData) {
       fetchPodcastsData();
     }
-  }, [pathname]);
+  }, [pathname, fetchPodcastsData]);
 
   useEffect(() => {
     if (podcastsData?.feed?.entry) {

@@ -31,7 +31,6 @@ describe("InputWithBadge", () => {
     renderComponent();
 
     const inputElement = screen.getByPlaceholderText(mockPlaceholder);
-
     fireEvent.change(inputElement, { target: { value: "test" } });
 
     expect(mockOnChange).toHaveBeenCalledTimes(1);

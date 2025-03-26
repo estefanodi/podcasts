@@ -37,7 +37,7 @@ export const Table: React.FC<TableProps> = ({
         {isLoading ? (
           <TableSkeleton />
         ) : (
-          <tbody>
+          <tbody data-testid="episodes-table">
             {episodes.map((episode: Episode) => {
               return (
                 <StyledTableRow key={episode.trackId}>

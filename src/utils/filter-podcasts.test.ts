@@ -21,7 +21,7 @@ describe("filterItems", () => {
     expect(filtered[0]["im:artist"].label).toBe(filtered[0]["im:artist"].label);
   });
 
-  it("returns all podcasts when no match is found", () => {
+  it("returns no podcasts when no match is found", () => {
     const searchTerm = "Non-existent term";
     const filtered = filterItems(podcasts, searchTerm);
 

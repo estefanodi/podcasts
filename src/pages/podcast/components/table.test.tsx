@@ -77,9 +77,9 @@ describe("Table", () => {
         isLoading: false,
       });
 
-      const skeletonComponent = screen.queryByTestId("table-skeleton");
+      const SkeletonComponent = screen.queryByTestId("table-skeleton");
 
-      expect(skeletonComponent).not.toBeInTheDocument();
+      expect(SkeletonComponent).not.toBeInTheDocument();
     });
   });
 
@@ -91,9 +91,11 @@ describe("Table", () => {
         isLoading: true,
       });
 
-      const skeletonComponent = screen.getByTestId("table-skeleton");
+      const SkeletonComponent = screen.getByTestId("table-skeleton");
+      const TableComponent = screen.queryByTestId("episodes-table");
 
-      expect(skeletonComponent).toBeInTheDocument();
+      expect(SkeletonComponent).toBeInTheDocument();
+      expect(TableComponent).not.toBeInTheDocument();
     });
   });
 });

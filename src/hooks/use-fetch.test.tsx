@@ -2,13 +2,19 @@ import { render, act, waitFor } from "@testing-library/react";
 
 import { useFetch } from "./use-fetch";
 
-describe("useFetch hook", () => {
-  const url = "https://example.com/api";
-  const cacheName = "testCache";
-  const cacheExpirationMs = 60000;
-  const errorStatuText = "Internal Server Error";
-  let mockCache: Cache;
+const url = "https://example.com/api";
+const cacheName = "testCache";
+const cacheExpirationMs = 60000;
+const errorStatuText = "Internal Server Error";
+let mockCache: Cache;
+let result: any;
 
+const TestComponent = () => {
+  result = useFetch(url, cacheName, cacheExpirationMs);
+  return null;
+};
+
+describe("useFetch hook", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
@@ -23,12 +29,6 @@ describe("useFetch hook", () => {
   });
 
   it("starts with initial state", () => {
-    let result: any;
-    function TestComponent() {
-      result = useFetch(url, cacheName, cacheExpirationMs);
-      return null;
-    }
-
     render(<TestComponent />);
 
     expect(result.data).toBeNull();
@@ -43,12 +43,6 @@ describe("useFetch hook", () => {
       ok: true,
       json: jest.fn().mockResolvedValue(mockData),
     });
-
-    let result: any;
-    function TestComponent() {
-      result = useFetch<typeof mockData>(url, cacheName, cacheExpirationMs);
-      return null;
-    }
 
     render(<TestComponent />);
 
@@ -69,12 +63,6 @@ describe("useFetch hook", () => {
       statusText: errorStatuText,
     } as Response);
 
-    let result: any;
-    function TestComponent() {
-      result = useFetch(url, cacheName, cacheExpirationMs);
-      return null;
-    }
-
     render(<TestComponent />);
 
     await act(async () => {
@@ -83,5 +71,23 @@ describe("useFetch hook", () => {
 
     expect(result.error).toBe(`Error: ${errorStatuText}`);
     expect(result.data).toBeNull();
+  });
+
+  it("uses cached data if available and not expired", async () => {
+    const cachedData = { message: "Cached Data" };
+    const mockResponse = new Response(
+      JSON.stringify({ timestamp: Date.now(), data: cachedData })
+    );
+
+    (mockCache.match as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+    render(<TestComponent />);
+
+    await act(async () => {
+      result.fetchData();
+    });
+
+    expect(result.data).toEqual(cachedData);
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });
