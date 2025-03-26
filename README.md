@@ -19,13 +19,15 @@ The api's calls are made using the browser fetch api and the results are stored 
 
 # Setup
 
+Once you cloned the repo
+
 ```
 yarn install
 ```
 
 # How to run it in development mode
 
-from the terminal run
+from a terminal tab run
 
 ```
 yarn dev
@@ -35,7 +37,7 @@ then it should be available in the browser at `http://localhost:1234`
 
 # How to run it in production mode
 
-from the terminal run
+from a terminal tab run
 
 ```
 yarn prod
